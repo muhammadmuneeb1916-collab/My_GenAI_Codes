@@ -1,0 +1,39 @@
+# Simple Currency Converter (Static Rates)
+
+def convert_currency(amount, from_currency, to_currency):
+    # Exchange rates (example values)
+    rates = {
+        "USD": 1,
+        "PKR": 278,
+        "EUR": 0.92,
+        "INR": 83
+    }
+
+    if from_currency not in rates or to_currency not in rates:
+        return "Invalid currency"
+
+    # Convert to USD first, then to target
+    usd_amount = amount / rates[from_currency]
+    converted = usd_amount * rates[to_currency]
+
+    return round(converted, 2)
+
+
+def main():
+    print("Currency Converter")
+    print("Available: USD, PKR, EUR, INR")
+
+    try:
+        amount = float(input("Enter amount: "))
+        from_currency = input("From currency: ").upper()
+        to_currency = input("To currency: ").upper()
+
+        result = convert_currency(amount, from_currency, to_currency)
+        print("Converted Amount:", result)
+
+    except ValueError:
+        print("Please enter a valid number.")
+
+
+if __name__ == "__main__":
+    main()
